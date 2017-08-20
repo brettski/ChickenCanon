@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <comment>Pin animation to player&#x0D;&#x0A;Ensure background and floor move in correct direction&#x0D;&#x0A;</comment>
+        <event-block sid="156218244322425">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="895558940705194" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Pin" id="0" name="Pin to object" sid="611758816747989" type="chickenAnimations">
+                    <param id="0" name="Pin to">player</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="2" name="Stop" sid="548989863895791" type="chickenAnimations" />
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="744637921872963" type="TiledBackground">
+                    <param id="0" name="Angle">180</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="509416870516504">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="971355340981070" type="TiledBackground">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">-Self.Width / 2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="277192246497526" type="TiledBackground">
+                    <param id="0" name="X">Self.X + Self.Width /2</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
