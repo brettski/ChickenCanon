@@ -10,6 +10,7 @@
     <unique-id>2m2oqhlgof90t</unique-id>
     <saved-with-version>24400</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
     </used-plugins>
@@ -17,6 +18,7 @@
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects />
@@ -62,19 +64,23 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="2" loop="0" name="stand" pingpong="0" repeatcount="1" repeatto="0" sid="972059279343528" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.53211" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.518519" hotspotY="0.477064" />
                 </animation>
                 <animation framecount="1" loop="0" name="hit" pingpong="0" repeatcount="1" repeatto="0" sid="640690823588868" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.518519" hotspotY="0.477064" />
                 </animation>
                 <animation framecount="6" loop="1" name="running" pingpong="0" repeatcount="1" repeatto="0" sid="695768210900751" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.529915" hotspotY="0.537736" />
+                    <frame duration="1" hotspotX="0.516949" hotspotY="0.57" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.522727" />
+                    <frame duration="1" hotspotX="0.478632" hotspotY="0.418367" />
+                    <frame duration="1" hotspotX="0.553571" hotspotY="0.472222" />
+                    <frame duration="1" hotspotX="0.516667" hotspotY="0.506024" />
+                </animation>
+                <animation framecount="2" loop="0" name="roll" pingpong="0" repeatcount="1" repeatto="0" sid="518733303663777" speed="5">
+                    <frame duration="1" hotspotX="0.367816" hotspotY="0.53271" />
+                    <frame duration="1" hotspotX="0.468085" hotspotY="0.486486" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -87,7 +93,14 @@
             </behaviors>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="243652967274569" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.221312" y="0.125" />
+                            <point x="0.762295" y="0.133929" />
+                            <point x="0.655738" y="1" />
+                            <point x="0.344262" y="1" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -100,6 +113,36 @@
             </behaviors>
             <texture />
         </object-type>
+        <object-type name="tnt" sid="538004957745860">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="115946502217627">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="204861520100161">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="631633161192648">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="9" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" sid="991179610923623" speed="5">
+                    <frame duration="1" hotspotX="0.485714" hotspotY="0.475" />
+                    <frame duration="1" hotspotX="0.459459" hotspotY="0.487805" />
+                    <frame duration="1" hotspotX="0.487805" hotspotY="0.487805" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.522727" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.511628" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.525" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.513514" hotspotY="0.487805" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="342008736391293">
+            <plugin id="Keyboard" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
@@ -108,7 +151,9 @@
     <event-folder>
         <event-sheet>Event sheet 1.xml</event-sheet>
     </event-folder>
-    <global-instances />
+    <global-instances>
+        <global-instance type="Keyboard" uid="6" />
+    </global-instances>
     <sounds-folder />
     <music-folder />
     <files-folder>

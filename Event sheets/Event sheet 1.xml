@@ -3,7 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <comment>Pin animation to player&#x0D;&#x0A;Ensure background and floor move in correct direction&#x0D;&#x0A;</comment>
+        <variable comment="Max X Reached (on fall maybe?)" constant="0" name="Current_Max_X" sid="232627794627337" static="0" type="number">0</variable>
+        <variable comment="Max Y Reached (on fall maybe?)" constant="0" name="Current_Max_Y" sid="418024541642531" static="0" type="number">0</variable>
+        <variable constant="0" name="Current_Speed" sid="716323689120907" static="0" type="number">40</variable>
+        <comment>Pin animation to player&#x0D;&#x0A;Ensure background and floor move in correct direction</comment>
         <event-block sid="156218244322425">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="895558940705194" type="System" />
@@ -17,7 +20,16 @@
                 <action behavior="Bullet" id="3" name="Set angle of motion" sid="744637921872963" type="TiledBackground">
                     <param id="0" name="Angle">180</param>
                 </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="467282556912231" type="tnt">
+                    <param id="0" name="Angle">180</param>
+                </action>
             </actions>
+        </event-block>
+        <event-block sid="519173564040344">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="534119102155835" type="System" />
+            </conditions>
+            <actions />
         </event-block>
         <event-block sid="509416870516504">
             <conditions>
@@ -29,6 +41,58 @@
             <actions>
                 <action id="-1" name="Set X" sid="277192246497526" type="TiledBackground">
                     <param id="0" name="X">Self.X + Self.Width /2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="460995889615535">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="668460520620596" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="9" name="Set vector Y" sid="219688932612975" type="player">
+                    <param id="0" name="Vector Y">-800</param>
+                </action>
+                <action behavior="Platform" id="8" name="Set vector X" sid="780025444723547" type="player">
+                    <param id="0" name="Vector X">1000</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="284191652502933" type="TiledBackground">
+                    <param id="0" name="Speed">Current_Speed</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="295735760098437" type="tnt">
+                    <param id="0" name="Speed">Current_Speed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="573330958303784">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="213309055278604" type="player">
+                    <param id="0" name="Object">tnt</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="9" name="Set vector Y" sid="984766504718766" type="player">
+                    <param id="0" name="Vector Y">-2000</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>When colliding with the floor, bounce at 75% of current rate on both X &amp; Y</comment>
+        <event-block sid="801032851937757">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="763963229270629" type="player">
+                    <param id="0" name="Object">Tiled_Floor</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="9" name="Set vector Y" sid="381802161233510" type="player">
+                    <param id="0" name="Vector Y">Self.Platform.VectorY * -0.75</param>
+                </action>
+                <action behavior="Platform" id="8" name="Set vector X" sid="919743486069156" type="player">
+                    <param id="0" name="Vector X">Self.Platform.VectorX * -0.75</param>
+                </action>
+                <action id="5" name="Set frame" sid="991078340951344" type="chickenAnimations">
+                    <param id="0" name="Frame number">Self.AnimationFrame  = 0 ? 1 : 0</param>
                 </action>
             </actions>
         </event-block>
